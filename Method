@@ -1,0 +1,44 @@
+1. Data Source
+This study uses the Bristol Stock Exchange (BSE) simulation environment, which replicates core market mechanisms such as the limit order book and matching engine.
+
+Four trading datasets were used: offset-copper-10, offset-ibm-1m, offset-nasdaq-1m, and offset-tnote10yr-1m.
+
+Each dataset was simulated 35 times, covering a 10-day trading period.
+-----------------------
+2. Design of the New Trading Algorithm
+
+Core Algorithm: TraderMMM02:
+Utilizes the Stochastic Oscillator (KD Line) to determine buy and sell decisions:
+
+K line triggers buy actions when it falls below 25 and is lower than the D line.
+
+The D line, a 3-period simple moving average of the K line, smoothens short-term volatility.
+
+Simplified RSV (Raw Stochastic Value) calculation:
+Uses the last 14 trading prices as the period instead of the traditional 14-day period.
+
+Introduces a loss function:
+Protects against selling at unacceptably low prices to ensure profit margins.
+------------------------
+3. Trading Simulation Design
+Simulation Conditions:
+Compare the performance of TraderMMM02 against the baseline model TraderMMM01.
+Simulate different market environments, such as high and low volatility scenarios.
+
+Trading Rules:
+Apply the KD Line to identify overbought or oversold market conditions.
+Use the loss function to avoid selling under unfavorable conditions.
+------------------------
+4. Performance Evaluation
+Wilcoxon-Mann-Whitney U Test:
+Compare the profitability of MMM02 and MMM01 under various market conditions.
+Test for statistical significance using P-values and R-values, with results showing MMM02 significantly outperforms MMM01.
+
+Mean Squared Error (MSE):
+Measure the average profit performance differences between MMM02 and MMM01, with significant disparities observed.
+Profit Residual Distribution:
+Calculate profit differences between MMM02 and MMM01 and analyze their characteristics using histograms.
+----------------------------
+5. Statistical and Visualization Analysis
+Use statistical charts (e.g., residual distribution histograms) to visualize the performance of different algorithms.
+Integrate tables and metrics (e.g., R-values, P-values, and MSE) to further confirm the advantages of MMM02.
